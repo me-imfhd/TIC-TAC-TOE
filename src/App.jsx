@@ -12,15 +12,22 @@ function Square({value, onSquareClick}) {
 }
 function Board(){
   const  [squares, setSquares] = useState(Array(9).fill(null))
-  const [isX , setX] = useState(true);
+  const [isX , setX] = useState(true);//rule 1: first input should be X
   function handleClick(i){
+    if(squares[i]!==null){// this will ensure once value is intialized as X or O it should not be re-intialized with opposite value 
+      return;
+    }
+    if(squares[i]!==null){
+      return;
+    }
     const nextSquares = squares.slice();
     if(isX){
+      //since is X by default true always this will execute first
       nextSquares[i] = "X";
-      setX(false);
+      setX(false);// this will invoke else statement to be executed on click after this
     }else{
       nextSquares[i] = "O";
-      setX(true);
+      setX(true);//this will invoke if statement to be executed on click after this
     }
     setSquares(nextSquares);
   }
